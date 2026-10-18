@@ -1,0 +1,33 @@
+
+{% extends 'portfolio/_base.html' %}
+
+{% block titulo %}
+    Adicionar Projeto | EVO-01
+{% endblock %}
+
+{% block conteudo %}
+
+    <h1>Adicionar Novo Projeto</h1>
+
+    <p>
+        Preencha as informações do projeto
+        que deseja adicionar ao portfólio.
+    </p>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <button type="submit">
+            Salvar Projeto
+        </button>
+    </form>
+
+    <p>
+        <a href="{% url 'index' %}">
+            Cancelar e voltar ao início
+        </a>
+    </p>
+
+{% endblock %}

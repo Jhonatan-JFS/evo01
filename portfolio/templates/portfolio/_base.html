@@ -1,0 +1,41 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block titulo %}EVO-01{% endblock %}</title>
+</head>
+
+<body>
+
+    <header>
+        <h2>EVO-01 | Tech Portfolio</h2>
+
+        <nav>
+            <a href="{% url 'index' %}">Início</a> |
+            <a href="{% url 'contato' %}">Contato</a>
+            {% if user.is_superuser %}
+            |
+                <a href="{% url 'adicionar' %}">Adicionar Projeto</a>
+            {% endif %}
+        </nav>
+    </header>
+
+    <hr>
+
+    <main>
+        {% block conteudo %}
+        {% endblock %}
+    </main>
+
+    <hr>
+
+    <footer>
+        <p>© 2026 EVO-01 | {{ nome|default:"Visitante" }}</p>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,51 @@
+{% extends 'portfolio/_base.html' %}
+{% block titulo %} Início | EVO-01 {% endblock %}
+{% block conteudo %}
+
+    <h1>Meu Portfólio de Tecnologia</h1>
+    <h2>{{ nome }}</h2>
+
+    <p>Área profissional: {{ area }}</p>
+
+    <p>Especialidade: {{ especialidade }}</p>
+
+    <h2>Minhas Tecnologias e Conhecimentos</h2>
+
+    {% if tecnologias %}
+    <ul>
+        {% for tecnologia in tecnologias %}
+        <li>{{ tecnologia }}</li>
+        {% endfor %}
+    </ul>
+    {% else %}
+        <p>Nenhuma tecnologia cadastrada.</p>
+    {% endif %}
+    
+    <hr>
+
+    <h2>Meus Projetos</h2>
+
+    {% for projeto in projetos %}
+
+        <article>
+            <h3>{{ projeto.titulo }}</h3>
+            <p>{{ projeto.descricao }}</p>
+            <p>
+                <strong>Categoria:</strong>
+                {{ projeto.categoria }}
+            </p>
+            <p>
+                <strong>Ano:</strong>
+                {{ projeto.ano }}
+            </p>
+        </article>
+    
+    <hr>
+
+    {% empty %}
+    
+        <p>Nenhum projeto cadastrado ainda.</p>
+    
+    {% endfor %}
+    
+{% endblock %}
