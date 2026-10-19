@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect;
+from django.shortcuts import render, redirect, get_object_or_404;
 from django.contrib.auth.decorators import login_required;
 from django.core.exceptions import PermissionDenied;
 
@@ -46,4 +46,17 @@ def adicionar(request):
         request,
         'portfolio/adicionar.html',
         {'form': form}
+    )
+
+def detalhe(request, id):
+    projeto = get_object_or_404(Projeto, id=id)
+
+    contexto = {
+        'projeto': projeto,
+    }
+
+    return render(
+        request,
+        'portfolio/detalhe.html',
+        contexto
     )

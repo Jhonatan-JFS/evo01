@@ -1,0 +1,23 @@
+{% block titulo %}{{ projeto.titulo }} | Evo-01{% endblock %}
+
+{% block conteudo %}
+    <article>
+        <h1>{{ projeto.titulo }}</h1>
+
+        <p>
+            <strong>Categoria:</strong>
+            {{ projeto.categoria }}
+        </p>
+        <p>
+            <strong>Ano:</strong>
+            {{ projeto.ano }}
+        </p>
+        
+        <h2>Sobre o projeto</h2>
+
+        <p>{{ projeto.descricao|linebreaks }}</p>
+    </article>
+    
+    <a href="{% url 'index' %}">Voltar para os projetos</a>
+
+    {% endblock %}

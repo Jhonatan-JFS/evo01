@@ -28,7 +28,11 @@
     {% for projeto in projetos %}
 
         <article>
-            <h3>{{ projeto.titulo }}</h3>
+            <h3>
+                <a href="{% url 'detalhe' projeto.id %}">
+                    {{ projeto.titulo }}
+                </a>
+            </h3>
             <p>{{ projeto.descricao }}</p>
             <p>
                 <strong>Categoria:</strong>
