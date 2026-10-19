@@ -15,11 +15,20 @@
         <h2>EVO-01 | Tech Portfolio</h2>
 
         <nav>
-            <a href="{% url 'index' %}">Início</a> |
-            <a href="{% url 'contato' %}">Contato</a>
+            <a href="{% url 'index' %}">
+                Início
+            </a>
+
+            |
+            
+            <a href="{% url 'contato' %}">
+                Contato
+            </a>
+
             {% if user.is_superuser %}
             |
-                <a href="{% url 'adicionar' %}">Adicionar Projeto</a>
+                <a href="{% url 'adicionar' %}">
+                    Adicionar Projeto</a>
             {% endif %}
         </nav>
     </header>

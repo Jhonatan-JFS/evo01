@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect, get_object_or_404;
 from django.contrib.auth.decorators import login_required;
 from django.core.exceptions import PermissionDenied;
+from django.contrib import messages;
 
 from .models import Projeto;
-from .forms import ProjetoForm;
+from .forms import ProjetoForm, ContatoForm;
 
 def index(request):
     projetos = Projeto.objects.order_by('-ano', 'titulo')
@@ -26,7 +27,27 @@ def index(request):
     return render(request, 'portfolio/index.html', contexto)
 
 def contato(request):
-    return render(request, 'portfolio/contato.html')
+    if request.method == 'POST':
+        form = ContatoForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+
+            messages.success(
+                request,
+                'Mensagem enviada com sucesso!'
+            )
+            return redirect('contato')
+    else:
+        form = ContatoForm()
+
+    contexto = {
+        'form': form,
+    }
+    return render(
+        request,
+        'portfolio/contato.html',
+        contexto)
 
 @login_required(login_url='admin:login')
 def adicionar(request):

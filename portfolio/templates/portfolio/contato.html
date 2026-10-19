@@ -2,13 +2,24 @@
 {%block titulo %} Contato | EVO-01 {% endblock %}
 {% block conteudo %}
     <h1>Entre em Contato</h1>
+    {% if messages %}
+        {% for message in messages%}
+        <p role="status">{{ message }}</p>
+        {% endfor %}
+    {% endif %}
 
     <p>
         Tem uma oportunidade profissional,
         projeto ou dúvida técnica?
     </p>
 
-    <p>Entre em contato comigo!</p>
+    <p>Envie uma mensagem pelo formulário abaixo.</p>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Enviar Mensagem</button>
+    </form>
 
     <a href="{% url 'index' %}">Voltar para o início</a>
 

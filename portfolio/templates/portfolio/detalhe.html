@@ -23,7 +23,7 @@
 <hr>
 
     {% if user.is_superuser %}
-        <a href="{% url 'editar' projeto.id %}">
+        <a href="{% url 'editar' id=projeto.id %}">
             Editar Projeto
         </a>
         |
