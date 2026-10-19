@@ -1,3 +1,4 @@
+{% extends 'portfolio/_base.html' %}
 {% block titulo %}{{ projeto.titulo }} | Evo-01{% endblock %}
 
 {% block conteudo %}
@@ -17,7 +18,23 @@
 
         <p>{{ projeto.descricao|linebreaks }}</p>
     </article>
+
     
-    <a href="{% url 'index' %}">Voltar para os projetos</a>
+<hr>
+
+    {% if user.is_superuser %}
+        <a href="{% url 'editar' projeto.id %}">
+            Editar Projeto
+        </a>
+        |
+        <a href="{% url 'excluir' projeto.id %}">
+            Excluir Projeto
+        </a>
+        
+    {% endif %}
+
+    <a href="{% url 'index' %}">
+        Voltar para os projetos
+    </a>
 
     {% endblock %}

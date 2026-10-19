@@ -1,0 +1,34 @@
+{% extends 'portfolio/_base.html' %}
+
+{% block titulo %}
+    Editar {{ projeto.titulo }} | EVO-01
+{% endblock %}
+
+{% block conteudo %}
+
+    <h1>Editar Projeto</h1>
+
+    <h2>{{ projeto.titulo }}</h2>
+
+    <p>
+        Altere os campos necessários e
+        clique em salvar.
+    </p>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <button type="submit">
+            Salvar Alterações
+        </button>
+    </form>
+
+    <p>
+        <a href="{% url 'detalhe' projeto.id %}">
+            Cancelar e voltar
+        </a>
+    </p>
+
+{% endblock %}

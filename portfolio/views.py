@@ -60,3 +60,46 @@ def detalhe(request, id):
         'portfolio/detalhe.html',
         contexto
     )
+
+@login_required(login_url='admin:login')
+def editar(request, id):
+    if not request.user.is_superuser:
+        raise PermissionDenied
+
+    projeto = get_object_or_404(Projeto, id=id)
+
+    if request.method == 'POST':
+        form = ProjetoForm(request.POST, instance=projeto)
+        
+        if form.is_valid():
+            form.save()
+            return redirect('detalhe', id=projeto.id)
+    else:
+        form = ProjetoForm(instance=projeto)
+
+    contexto = {
+        'form': form,
+        'projeto': projeto,
+    }
+
+    return render(
+        request,
+        'portfolio/editar.html',
+        contexto
+    )
+@login_required(login_url='admin:login')
+def excluir(request, id):
+    if not request.user.is_superuser:
+        raise PermissionDenied
+
+    projeto = get_object_or_404(Projeto, id=id)
+
+    if request.method == 'POST':
+        projeto.delete()
+        return redirect('index')
+
+    return render(
+        request,
+        'portfolio/excluir.html',
+        {'projeto': projeto}
+    )
